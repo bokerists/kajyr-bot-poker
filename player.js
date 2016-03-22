@@ -35,6 +35,9 @@ exports = module.exports = {
     var allInPlayers = _.filter(gamestate.players, function(g) { return g.chips == 0 } ).length;
     var river = gamestate.commonCards.length === 5; 
 
+    var allIn = _.partial(bet, Infinity);
+    var call = _.partial(bet, gamestate.callAmount);
+
 
     if (numPlayers == 2) {
       turniInDue++;
@@ -50,14 +53,13 @@ exports = module.exports = {
     var highPair = highCards.indexOf(pair) >= 0;
     var highTris = highCards.indexOf(tris) >= 0;
 
-
     if (gamestate.commonCards.length < 3 && !pair) {
-      return bet(gamestate.callAmount);
+      return call();
     }
 
     // prevent loops
     if (turniInDue > 10 && !highPair) {
-      return bet(gamestate.callAmount);
+      return call();
     }
    
     var ourBet = 0;
