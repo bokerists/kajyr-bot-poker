@@ -68,10 +68,14 @@ exports = module.exports = {
     var ourBet = 0;
 
     if (preTurn && !somebodyAllInPreTurn) {
-      ourBet = 2;
+      ourBet = 1;
     }
 
-    if (pair || tris || poker) {
+    if (pair) {
+      ourBet = 2
+    }
+
+    if (tris || poker) {
       ourBet = Infinity;
     }
 
