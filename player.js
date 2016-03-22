@@ -71,16 +71,18 @@ exports = module.exports = {
       ourBet = Infinity;
     }
 
+    /*
     if (numPlayers == 2 && poker !== false) {
       ourBet = Infinity;
     }
+    */
 
     if (color) {
       ourBet = Infinity;
     }
   
 
-    return bet(Math.max(gamestate.callAmount, gamestate.sb * ourBet));
+    return bet(gamestate.sb * ourBet);
 
   }
 
