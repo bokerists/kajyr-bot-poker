@@ -32,6 +32,6 @@ var gamestate = {
 
 player.bet(gamestate, function(amount) {
 
-	console.log(amount);
+	console.log('bet:', amount);
 
 })

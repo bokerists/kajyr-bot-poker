@@ -52,21 +52,24 @@ exports = module.exports = {
     var color = c.hasColor(hand);
     var highPair = highCards.indexOf(pair) >= 0;
     var highTris = highCards.indexOf(tris) >= 0;
-
+ /*
     if (gamestate.commonCards.length < 3 && !pair) {
       return call();
     }
 
     // prevent loops
-    if (turniInDue > 10 && !highPair) {
+   if (turniInDue > 10 && !highPair) {
       return call();
-    }
+    }*/
    
     var ourBet = 0;
 
     if (gamestate.commonCards.length < 5) {
       ourBet = gamestate.callAmount;
     }
+
+    console.log(ourBet)
+
 
     
     if (poker) {
