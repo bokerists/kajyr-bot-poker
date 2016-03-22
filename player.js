@@ -74,7 +74,7 @@ exports = module.exports = {
     if (pair) {
       ourBet = 2
     }
-
+    
     if (tris || poker) {
       ourBet = Infinity;
     }
@@ -83,7 +83,7 @@ exports = module.exports = {
       ourBet = Infinity;
     }
 
-    return bet(Math.max(gamestate.callAmount, gamestate.sb * ourBet);
+    return bet(Math.max(gamestate.callAmount, gamestate.sb * ourBet));
 
   }
 
