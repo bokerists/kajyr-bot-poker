@@ -48,7 +48,7 @@ module.exports = {
     betAllIn: function(test) {
         this.gamestate.commonCards = [];
         this.gamestate.players[0].cards = [ {rank: 'A', type: 'C'}, {rank: 'A', type: 'R'}];
-
+        
         player.bet(this.gamestate, function(amount) {
             test.equals(Infinity, amount);
              test.done();

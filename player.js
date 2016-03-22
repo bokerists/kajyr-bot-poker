@@ -54,7 +54,7 @@ exports = module.exports = {
     if (gamestate.commonCards.length < 5) {
       ourBet = 1;
     }
-    /*
+   
     if (poker) {
       ourBet = mapVal[poker];
     } else if (tris) {
@@ -78,10 +78,9 @@ exports = module.exports = {
     if (color) {
       ourBet = Infinity;
     }
-  */
-   
+  
 
-    return bet(gamestate.sb * ourBet);
+    return bet(Math.max(gamestate.callAmount, gamestate.sb * ourBet));
 
   }
 
