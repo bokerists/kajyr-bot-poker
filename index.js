@@ -14,20 +14,20 @@ var gamestate = {
     "pot": 100,
     "commonCards": tableNull,
     "players": [{
-    	status: 'active',
-    	cards: hand
+    	"status": 'active',
+    	"cards": hand
     }, {
-    	status: 'active',
-    	cards: []
+    	"status": 'active',
+    	"cards": []
     }, {
-    	status: 'folded',
-    	cards: []
+    	"status": 'folded',
+    	"cards": []
     }],
-    // Index of the current player.
     "me": 0,
-
     "callAmount": 10
 };
+
+gamestate = { "game": 2, "round": 1, "spinCount": 2, "sb": 2, "pot": 100, "commonCards": [], "players": [{ "cards": [ {"rank": "2", "type": "C"}, {"rank": "Q", "type": "C"}] }, { "status": "active", "cards": [] }, { "status": "folded", "cards": [] }], "me": 0, "callAmount": 10 };
 
 
 player.bet(gamestate, function(amount) {
