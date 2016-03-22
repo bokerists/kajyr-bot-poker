@@ -55,18 +55,14 @@ exports = module.exports = {
     var highTris = highCards.indexOf(tris) >= 0;
     var nonHoUnCazzo = !pair && !color;
 
+    if (gamestate.spinCount === 0) {
+      var puntate = [];
+    }
+
     if (nonHoUnCazzo) {
       if (somebodyAllInPreTurn) { return fold(); }
       if (numPlayers === 2) { return fold(); }
-    }
-    
-   
-    if (nonHoUnCazzo) {
-      if (preFlop) {
-        return call();
-      } else {
-        return fold();
-      }
+      if (!preFlop) { return fold(); }
     }
     var ourBet = 1;
 
@@ -77,8 +73,20 @@ exports = module.exports = {
     if (numPlayers === 2) {
       ourBet *= 2;
     }
+    var b = Math.max(gamestate.callAmount, gamestate.sb * ourBet);
+    
+    if (puntate.length > 3) {
+      var last = puntate[puntate.length];
+      var prev = puntate[puntate.length - 1];
 
-    return bet(Math.max(gamestate.callAmount, gamestate.sb * ourBet));
+      if (b == last && last == prev) {
+        ourBet = Infinity;
+      }
+    }
+   
+
+    puntate.push(b);
+    return bet(b);
 /*
     var ourBet = 0;
 
