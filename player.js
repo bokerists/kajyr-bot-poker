@@ -32,10 +32,17 @@ exports = module.exports = {
     var hand = gamestate.commonCards.concat(me.cards);
     var numPlayers = _.filter(gamestate.players, function(g) { return g.status == 'active'} ).length;
     
-    var allInPlayers = _.filter(gamestate.players, function(g) { return g.chips == 0 } ).length;
-    var somebodyAllInPreTurn = gamestate.round < 4 && allInPlayers > 0;
     var river = gamestate.commonCards.length === 5; 
+    var turn = gamestate.commonCards.length === 4;
+    var preTurn = gamestate.commonCards.length < 4;
+    var preFlop = gamestate.commonCards.length < 3;
 
+    var allInPlayers = _.filter(gamestate.players, function(g) { return g.chips == 0 } ).length;
+    var somebodyAllInPreTurn = preTurn && allInPlayers > 0;
+    
+
+    var call = _.partial(bet, gamestate.callAmount);
+    var fold = _.partial(bet, 0);
     var allIn = _.partial(bet, Infinity);
 
     // What we have
@@ -47,15 +54,13 @@ exports = module.exports = {
     var highTris = highCards.indexOf(tris) >= 0;
     var nonHoUnCazzo = !pair && !color;
 
-    if (gamestate.commonCards.length < 3 && !pair) {
-      return bet(gamestate.callAmount);
+    if (nonHoUnCazzo) {
+      if (somebodyAllInPreTurn) { return fold(); }
+      if (preFlop) { return call(); }
     }
+    
 
     var ourBet = 0;
-
-    if (somebodyAllInPreTurn && nonHoUnCazzo) {
-      return bet(0);
-    }
 
     if (gamestate.commonCards.length < 5 && !somebodyAllInPreTurn) {
       ourBet = 1;
@@ -77,11 +82,9 @@ exports = module.exports = {
       ourBet = Infinity;
     }
 
-    /*
     if (numPlayers == 2 && poker !== false) {
       ourBet = Infinity;
     }
-    */
 
     if (color) {
       ourBet = Infinity;
