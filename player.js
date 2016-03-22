@@ -33,6 +33,7 @@ exports = module.exports = {
     var numPlayers = _.filter(gamestate.players, function(g) { return g.status == 'active'} ).length;
     
     var allInPlayers = _.filter(gamestate.players, function(g) { return g.chips == 0 } ).length;
+    var somebodyAllInSubito = gamestate.commonCards.length == 0 && allInPlayers > 0;
     var river = gamestate.commonCards.length === 5; 
 
     var allIn = _.partial(bet, Infinity);
@@ -51,11 +52,7 @@ exports = module.exports = {
 
     var ourBet = 0;
 
-    if (allInPlayers > 0 && !pair) {
-      bet(0);
-    }
-
-    if (gamestate.commonCards.length < 5) {
+    if (gamestate.commonCards.length < 5 && !somebodyAllInSubito) {
       ourBet = 1;
     }
    
