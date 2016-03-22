@@ -1,32 +1,37 @@
+var player = require('./player.js');
 
-'use strict';
+var hand = [ {rank: '2', type: 'C'}, {rank: 'Q', type: 'C'}];
 
-const player = require('./player');
-
-const express = require('express');
-const http = require('http');
-const bodyParser = require('body-parser');
-
-const app = express();
-const server = http.Server(app);
-
-app.use(bodyParser.json());
-
-app.get('/', function(req, res) {
-  res.status(200).send('200 OK');
-});
-
-app.get('/version', function(req, res) {
-  res.status(200).send(player.VERSION);
-});
-
-app.post('/bet', function(req, res) {
-  player.bet(req.body, bet => res.status(200).send(bet.toString()));
-});
+var table = [ {rank: '2', type: 'C'}, {rank: '3', type: 'D'}, {rank: '5', type: 'T'}, {rank: 'K', type: 'T'} ];
+var tableColor = [ {rank: '2', type: 'C'}, {rank: '3', type: 'C'}, {rank: '5', type: 'C'}, {rank: 'K', type: 'C'} ];
 
 
-const port = parseInt(process.env['PORT'] || 1337);
+var gamestate = {
+    "game": 2,
+    "round": 1,
+    "spinCount": 2,
+    "sb": 2,
+    "pot": 100,
+    "commonCards": tableColor,
+    "players": [{
+    	status: 'active',
+    	cards: hand
+    }, {
+    	status: 'active',
+    	cards: []
+    }, {
+    	status: 'folded',
+    	cards: []
+    }],
+    // Index of the current player.
+    "me": 0,
 
-server.listen(port, function() {
-  console.log('Server listening on port', server.address().port);
-});
+    "callAmount": 10
+};
+
+
+player.bet(gamestate, function(amount) {
+
+	console.log(amount);
+
+})
