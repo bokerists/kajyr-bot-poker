@@ -62,12 +62,14 @@ exports = module.exports = {
 
     if (nonHoUnCazzo && gamestate.spinCount >= 5) {
       if (somebodyAllInPreTurn) { return fold(); }
-      if (numPlayers === 2) { return fold(); }
-      if (!preFlop) { return fold(); }
     }
     var ourBet = 1;
 
-    if (highTris || highPair || color) {
+    if (pair || tris) {
+      ourBet = 2;
+    }
+
+    if (highTris || highPair || color || poker) {
       ourBet = 4;
     }
 
