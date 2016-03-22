@@ -59,12 +59,17 @@ exports = module.exports = {
       if (somebodyAllInPreTurn) { return fold(); }
     }
     
-    if (preFlop) {
-       if (nonHoUnCazzo) {
-          return call();
-       }
+   
+    if (nonHoUnCazzo) {
+      if (preFlop) {
+        return call();
+      } else {
+        return fold();
+      }
     }
-
+    var ourBet = 2;
+    return bet(Math.max(gamestate.callAmount, gamestate.sb * ourBet));
+/*
     var ourBet = 0;
 
     if (preTurn && !somebodyAllInPreTurn) {
@@ -85,6 +90,7 @@ exports = module.exports = {
 
     return bet(Math.max(gamestate.callAmount, gamestate.sb * ourBet));
 
+*/
   }
 
 };
