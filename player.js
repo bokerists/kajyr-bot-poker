@@ -68,11 +68,7 @@ exports = module.exports = {
     var ourBet = 1;
 
     if (highTris || highPair || color) {
-      ourBet = 2;
-    }
-
-    if (numPlayers === 2) {
-      ourBet *= 2;
+      ourBet = 4;
     }
 
     var b = Math.max(gamestate.callAmount, gamestate.sb * ourBet);
