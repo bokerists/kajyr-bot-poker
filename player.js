@@ -5,19 +5,19 @@ var c = require("./cards.js");
 var highCards = ['K', 'J', 'Q', 'A'];
 
 var mapVal = {
-  '2': 10,
-  '3': 10,
-  '4': 10,
-  '5': 10,
-  '6': 10,
-  '7': 10,
-  '8': 10,
-  '9': 10,
-  '10': 30,
-  'J': 40,
-  'Q': 60,
-  'K': 80,
-  'A': 100,
+  '2': 1,
+  '3': 1,
+  '4': 1,
+  '5': 1,
+  '6': 1,
+  '7': 1,
+  '8': 1,
+  '9': 1,
+  '10': 3,
+  'J': 4,
+  'Q': 6,
+  'K': 8,
+  'A': 10,
 }
 
 var turniInDue = 0;
@@ -67,17 +67,13 @@ exports = module.exports = {
     if (gamestate.commonCards.length < 5) {
       ourBet = gamestate.callAmount;
     }
-
-    console.log(ourBet)
-
-
     
     if (poker) {
-      ourBet = gamestate.callAmount + mapVal[poker] * 3;
+      ourBet = gamestate.callAmount * mapVal[poker];
     } else if (tris) {
-      ourBet = gamestate.callAmount + mapVal[tris] * 2;
+      ourBet = gamestate.callAmount * mapVal[tris];
     } else if (pair) {
-      ourBet = gamestate.callAmount + mapVal[pair];
+      ourBet = gamestate.callAmount * mapVal[pair];
     }
 
     if ((highTris || highPair)) {
