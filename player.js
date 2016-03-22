@@ -51,7 +51,7 @@ exports = module.exports = {
 
     var ourBet = 0;
 
-    if (gamestate.commonCards.length <= 5) {
+    if (gamestate.commonCards.length < 5) {
       ourBet = 1;
     }
     /*
@@ -81,7 +81,7 @@ exports = module.exports = {
   */
    
 
-    return bet(gamestate.callAmount * ourBet);
+    return bet(gamestate.sb * ourBet);
 
   }
 
