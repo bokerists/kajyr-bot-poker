@@ -74,8 +74,8 @@ exports = module.exports = {
     } else if (pair) {
       ourBet = gamestate.callAmount + mapVal[pair];
     }
-/*
-    if (isArcangeloAllInSubito && (highTris || highPair)) {
+
+    if ((highTris || highPair)) {
       ourBet = Infinity;
     }
 
@@ -90,7 +90,7 @@ exports = module.exports = {
     if (color) {
       ourBet = Infinity;
     }
-    */
+  
    
 
     return bet(ourBet);
