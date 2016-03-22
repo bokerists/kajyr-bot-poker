@@ -71,7 +71,7 @@ exports = module.exports = {
     var ourBet = 1;
 
     if (highTris || highPair || color) {
-      ourBet = Infinity;
+      ourBet = 2;
     }
 
     if (numPlayers === 2) {
