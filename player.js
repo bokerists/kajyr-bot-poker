@@ -60,6 +60,7 @@ exports = module.exports = {
     }
 
     if (nonHoUnCazzo) {
+      return fold();
       if (somebodyAllInPreTurn) { return fold(); }
       if (numPlayers === 2) { return fold(); }
       if (!preFlop) { return fold(); }
