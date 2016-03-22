@@ -68,6 +68,11 @@ exports = module.exports = {
       }
     }
     var ourBet = 2;
+
+    if (highTris || highPair || color) {
+      ourBet = Infinity;
+    }
+
     return bet(Math.max(gamestate.callAmount, gamestate.sb * ourBet));
 /*
     var ourBet = 0;
