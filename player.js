@@ -34,6 +34,7 @@ exports = module.exports = {
     
     var river = gamestate.commonCards.length === 5; 
     var turn = gamestate.commonCards.length === 4;
+    var preRiver = gamestate.commonCards.length < 5;
     var preTurn = gamestate.commonCards.length < 4;
     var preFlop = gamestate.commonCards.length < 3;
 
@@ -56,13 +57,17 @@ exports = module.exports = {
 
     if (nonHoUnCazzo) {
       if (somebodyAllInPreTurn) { return fold(); }
-      if (preFlop) { return call(); }
     }
     
+    if (preFlop) {
+       if (nonHoUnCazzo) {
+          return call();
+       }
+    }
 
     var ourBet = 0;
 
-    if (gamestate.commonCards.length < 5 && !somebodyAllInPreTurn) {
+    if (preTurn && !somebodyAllInPreTurn) {
       ourBet = 1;
     }
    
