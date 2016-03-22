@@ -73,6 +73,7 @@ exports = module.exports = {
     if (numPlayers === 2) {
       ourBet *= 2;
     }
+
     var b = Math.max(gamestate.callAmount, gamestate.sb * ourBet);
     
     if (puntate.length > 3) {
@@ -80,7 +81,7 @@ exports = module.exports = {
       var prev = puntate[puntate.length - 2];
 
       if (b == last && last == prev) {
-        ourBet = Infinity;
+        b = Infinity;
       }
     }
    
