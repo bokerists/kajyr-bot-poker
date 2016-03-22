@@ -83,7 +83,7 @@ exports = module.exports = {
       ourBet = Infinity;
     }
 
-    return bet(gamestate.sb * ourBet);
+    return bet(Math.max(gamestate.callAmount, gamestate.sb * ourBet);
 
   }
 
