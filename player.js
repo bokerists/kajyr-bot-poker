@@ -33,7 +33,7 @@ exports = module.exports = {
     var numPlayers = _.filter(gamestate.players, function(g) { return g.status == 'active'} ).length;
     
     var allInPlayers = _.filter(gamestate.players, function(g) { return g.chips == 0 } ).length;
-    var somebodyAllInSubito = gamestate.commonCards.length == 0 && allInPlayers > 0;
+    var somebodyAllInPreTurn = gamestate.round < 4 && allInPlayers > 0;
     var river = gamestate.commonCards.length === 5; 
 
     var allIn = _.partial(bet, Infinity);
@@ -45,14 +45,19 @@ exports = module.exports = {
     var color = c.hasColor(hand);
     var highPair = highCards.indexOf(pair) >= 0;
     var highTris = highCards.indexOf(tris) >= 0;
- 
+    var nonHoUnCazzo = !pair && !color;
+
     if (gamestate.commonCards.length < 3 && !pair) {
       return bet(gamestate.callAmount);
     }
 
     var ourBet = 0;
 
-    if (gamestate.commonCards.length < 5 && !somebodyAllInSubito) {
+    if (somebodyAllInPreTurn && nonHoUnCazzo) {
+      return bet(0);
+    }
+
+    if (gamestate.commonCards.length < 5 && !somebodyAllInPreTurn) {
       ourBet = 1;
     }
    
