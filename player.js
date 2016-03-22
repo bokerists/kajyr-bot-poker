@@ -51,6 +51,10 @@ exports = module.exports = {
 
     var ourBet = 0;
 
+    if (allInPlayers > 0 && !pair) {
+      bet(0);
+    }
+
     if (gamestate.commonCards.length < 5) {
       ourBet = 1;
     }
