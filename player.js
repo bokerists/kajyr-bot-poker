@@ -52,11 +52,11 @@ exports = module.exports = {
     var color = c.hasColor(hand);
     var highPair = highCards.indexOf(pair) >= 0;
     var highTris = highCards.indexOf(tris) >= 0;
- /*
+ 
     if (gamestate.commonCards.length < 3 && !pair) {
       return call();
     }
-
+/*
     // prevent loops
    if (turniInDue > 10 && !highPair) {
       return call();
@@ -65,15 +65,15 @@ exports = module.exports = {
     var ourBet = 0;
 
     if (gamestate.commonCards.length < 5) {
-      ourBet = gamestate.callAmount;
+      ourBet = 1;
     }
     
     if (poker) {
-      ourBet = gamestate.callAmount * mapVal[poker];
+      ourBet = mapVal[poker];
     } else if (tris) {
-      ourBet = gamestate.callAmount * mapVal[tris];
+      ourBet = mapVal[tris];
     } else if (pair) {
-      ourBet = gamestate.callAmount * mapVal[pair];
+      ourBet = mapVal[pair];
     }
 
     if ((highTris || highPair)) {
@@ -94,7 +94,7 @@ exports = module.exports = {
   
    
 
-    return bet(ourBet);
+    return bet(gamestate.callAmount * ourBet);
 
   }
 
