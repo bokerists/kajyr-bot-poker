@@ -68,33 +68,16 @@ exports = module.exports = {
     var ourBet = 0;
 
     if (preTurn && !somebodyAllInPreTurn) {
-      ourBet = 1;
-    }
-   
-    if (poker) {
-      ourBet = mapVal[poker];
-    } else if (tris) {
-      ourBet = mapVal[tris];
-    } else if (pair) {
-      ourBet = mapVal[pair];
+      ourBet = 2;
     }
 
-    if (highTris || highPair) {
+    if (pair || tris || poker) {
       ourBet = Infinity;
     }
 
-    if (highTris) {
+    if (highTris || highPair || color) {
       ourBet = Infinity;
     }
-
-    if (numPlayers == 2 && poker !== false) {
-      ourBet = Infinity;
-    }
-
-    if (color) {
-      ourBet = Infinity;
-    }
-  
 
     return bet(gamestate.sb * ourBet);
 
