@@ -57,6 +57,7 @@ exports = module.exports = {
 
     if (nonHoUnCazzo) {
       if (somebodyAllInPreTurn) { return fold(); }
+      if (numPlayers === 2) { return fold(); }
     }
     
    
@@ -67,10 +68,14 @@ exports = module.exports = {
         return fold();
       }
     }
-    var ourBet = 2;
+    var ourBet = 1;
 
     if (highTris || highPair || color) {
-      ourBet = Infinity;
+      ourBet = 2;
+    }
+
+    if (numPlayers === 2) {
+      ourBet *= 2;
     }
 
     return bet(Math.max(gamestate.callAmount, gamestate.sb * ourBet));
