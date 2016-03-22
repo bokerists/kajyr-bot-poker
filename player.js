@@ -48,6 +48,7 @@ exports = module.exports = {
 
     // What we have
     var pair = c.hasPair(hand);
+    var pairInHand = c.hasPair(me.cards);
     var tris = c.hasTris(hand);
     var poker = c.hasPoker(hand);
     var color = c.hasColor(hand);
@@ -59,8 +60,7 @@ exports = module.exports = {
       var puntate = [];
     }
 
-    if (nonHoUnCazzo) {
-      return fold();
+    if (nonHoUnCazzo && gamestate.spinCount >= 5) {
       if (somebodyAllInPreTurn) { return fold(); }
       if (numPlayers === 2) { return fold(); }
       if (!preFlop) { return fold(); }
@@ -89,28 +89,7 @@ exports = module.exports = {
 
     puntate.push(b);
     return bet(b);
-/*
-    var ourBet = 0;
 
-    if (preTurn && !somebodyAllInPreTurn) {
-      ourBet = 1;
-    }
-
-    if (pair) {
-      ourBet = 2
-    }
-    
-    if (tris || poker) {
-      ourBet = Infinity;
-    }
-
-    if (highTris || highPair || color) {
-      ourBet = Infinity;
-    }
-
-    return bet(Math.max(gamestate.callAmount, gamestate.sb * ourBet));
-
-*/
   }
 
 };
